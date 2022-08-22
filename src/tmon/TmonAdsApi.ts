@@ -2,9 +2,6 @@ import {BaseApi} from "../common/BaseApi";
 import {LoginError} from "../common/IdPasswordNotMatchedError";
 import {toTwoDigit} from "../common/toTwoDigit";
 
-const RSA = require('./rsa');
-const publicKey = RSA.getPublicKey("-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAl3NgVk\/RX56\/67zRbfRp\nFTKu2SB0rrjebPXYEYvrtimbVQpmSIOe12BKVXMKCkMVM8iELLCdaDKViOgJIUfo\nDyTOtulZ3hX+elB61vM5sZKImt2e24fHGIHZLtxfveNUcCPe5kz0ISppJtTgjhFc\nK0vzD3GjQPGwkflGJwao0Ikk6o+TfazlrB871gsR8p9DTE2lAARPorXfglkOT3WF\n9V\/gYxi301T22RE55ZILaM+Tg71VxeNuNRbzA8SLUpKaVObREAVGoyKSOiFObbz3\nic5uNHcYVnrUDdbU5h6\/zMb1zG\/6tPR2tRHIdByzQy5kCdItc6cvId0RBDvRz+MO\nFQIDAQAB\n-----END PUBLIC KEY-----");
-
 export class TmonAdsApi extends BaseApi {
   async login(id: string, password: string) {
     let body = new URLSearchParams({
@@ -68,8 +65,7 @@ export class TmonAdsApi extends BaseApi {
       body,
       "method": "POST"
     });
-    let json = await res.text();
-    return json;
+    return await res.json();
   }
 }
 
