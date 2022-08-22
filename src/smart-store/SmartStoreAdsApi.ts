@@ -42,6 +42,10 @@ export class SmartStoreAdsApi extends BaseApi {
       "method": "GET"
     });
     let json = await res.json() as Array<_BizMoneyHistory>;
+    if (!Array.isArray(json)) {
+      console.error(json);
+      throw new Error('json array expected');
+    }
 
     return json.map(it => {
       return {
